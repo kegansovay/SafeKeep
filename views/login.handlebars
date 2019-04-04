@@ -1,29 +1,73 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>DomoMaker</title>
+  <title>SafeKeep</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
   <link rel="shortcut icon" href="/assets/img/favicon.png"/>
   <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
 </head>
 <body> 
-  <nav><a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo"/></a>
-    <div class="navlink"><a href="/login">Login</a></div>
-    <div class="navlink"><a href="/signup">Sign up</a></div>
-  </nav>
-  <section id="login">
-    <form id="loginForm" name="loginForm" action="/login" method="POST" class="mainForm">
-      <label for="username">Username: </label>
-      <input id="user" type="text" name="username" placeholder="username"/>
-      <label for="pass">Password: </label>
-      <input id="pass" type="password" name="pass" placeholder="password"/>
-      <input type="hidden" name="_csrf" value={{csrfToken}} />
-      <input class="formSubmit" type="submit" value="Sign In" />
-    </form>
-  </section>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/maker">
+        <img src="/assets/img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        SafeKeep
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 p-2 my-lg-0">
+          <a class="btn btn-outline-success my-2 my-sm-0" href="/signup">Sign up</a>
+        </form>
+        <form class="form-inline my-2 p-2 my-lg-0">
+          <a class="btn btn-success my-2 my-sm-0" href="/login">Login</a>
+        </form>
+      </div>
+    </nav>
+
+    <div class="wrapper animated zoomIn ">
+      <div id="formContent">
+        <br>
+        <br>
+        <h2>SafeKeep</h2>
+        <h5>Login</h5>
+        <!-- Logo -->
+        <div class="">
+          <img src="/assets/img/logo.svg" style="width: 60%;" class="p-4" id="icon" alt="User Icon" />
+        </div>
+        
+
+        <!-- Login Form -->
+        <section id="login">
+          <form id="loginForm" name="loginForm" action="/login" method="POST">
+            <input id="user" type="text"  name="username" placeholder="username">
+            <input id="pass" type="password"  name="pass" placeholder="password">
+            <input type="hidden" name="_csrf" value={{csrfToken}} />
+            <input type="submit" class="fadeIn btn btn-success" value="Log In">
+          </form>
+        </section>
+        
+
+      
+
+      </div>
+    </div>
+
+
+  
+  
   <div id="domoMessage"><img id="speech" src="/assets/img/speech.png" alt="speech box"/>
     <h3><span id="errorMessage">Wrong username or password</span></h3><img id="domo" src="assets/img/domo.png" alt="domo"/>
   </div>
   <script src="/assets/bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -7,18 +7,24 @@ let DomoModel = {};
 //mogoose.types.objectid is a function that converst string ID to real mongo ID
 const convertId = mongoose.Types.ObjectId;
 const setName = (name) => _.escape(name).trim();
+const setUserName = (name) => _.escape(name).trim();
 
 const DomoSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: true,
         trim: true,
         set: setName,
     },
 
-    age: {
-        type: Number,
-        min: 0,
+    username: {
+        type: String,
+        required: true,
+        set: setUserName,
+    },
+
+    password:{
+        type: String,
         required: true,
     },
 
@@ -35,8 +41,9 @@ const DomoSchema = new mongoose.Schema({
 });
 
 DomoSchema.statics.toAPI = (doc) => ({
-    name: doc.name,
-    age: doc.age,
+    title: doc.title,
+    username: doc.username,
+    password: doc.password,
 });
 
 DomoSchema.statics.findByOwner = (ownerId, callback) => {
@@ -44,7 +51,7 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
         owner: convertId(ownerId),
     };
 
-    return DomoModel.find(search).select('name age').exec(callback);
+    return DomoModel.find(search).select('title username password').exec(callback);
 };
 
 DomoModel = mongoose.model('Domo', DomoSchema);

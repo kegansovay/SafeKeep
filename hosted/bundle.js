@@ -2,7 +2,7 @@
 
 var handleError = function handleError(message) {
   $("#errorMessage").text(message);
-  $("#domoMessage").animate({ width: 'toggle' }, 350);
+  //$("#domoMessage").animate({width:'toggle'},350);
 };
 
 var sendAjax = function sendAjax(action, data) {
@@ -13,7 +13,7 @@ var sendAjax = function sendAjax(action, data) {
     data: data,
     dataType: "json",
     success: function success(result, status, xhr) {
-      $("#domoMessage").animate({ width: 'hide' }, 350);
+      //$("#domoMessage").animate({width:'hide'},350);
 
       window.location = result.redirect;
     },
@@ -26,10 +26,11 @@ var sendAjax = function sendAjax(action, data) {
 };
 
 $(document).ready(function () {
+
   $("#signupForm").on("submit", function (e) {
     e.preventDefault();
 
-    $("#domoMessage").animate({ width: 'hide' }, 350);
+    //$("#domoMessage").animate({width:'hide'},350);
 
     if ($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
       handleError("RAWR! All fields are required");
@@ -47,9 +48,10 @@ $(document).ready(function () {
   });
 
   $("#loginForm").on("submit", function (e) {
+
     e.preventDefault();
 
-    $("#domoMessage").animate({ width: 'hide' }, 350);
+    //$("#domoMessage").animate({width:'hide'},350);
 
     if ($("#user").val() == '' || $("#pass").val() == '') {
       handleError("RAWR! Username or password is empty");
@@ -61,18 +63,43 @@ $(document).ready(function () {
     return false;
   });
 
-  $("#domoForm").on("submit", function (e) {
+  $("#credsForm").on("submit", function (e) {
+
     e.preventDefault();
 
-    $("#domoMessage").animate({ width: 'hide' }, 350);
+    //$("#domoMessage").animate({width:'hide'},350);
 
-    if ($("#domoName").val() == '' || $("#domoAge").val() == '') {
-      handleError("RAWR! All fields are required");
-      return false;
-    }
 
-    sendAjax($("#domoForm").attr("action"), $("#domoForm").serialize());
+    sendAjax($("#credsForm").attr("action"), $("#credsForm").serialize());
+
+    $('#createModal').modal('hide');
 
     return false;
   });
+
+  $('#credsForm').keyup(function () {
+
+    var empty = false;
+    $('form > input').each(function () {
+
+      if ($(this).val() == '') {
+        empty = true;
+      }
+    });
+
+    if (empty) {
+      $('#addButton').attr('disabled', 'disabled');
+    } else {
+      $('#addButton').removeAttr('disabled');
+    }
+  });
 });
+
+function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
