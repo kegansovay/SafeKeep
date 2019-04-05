@@ -20,14 +20,15 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
+            <a class="nav-link" href="/maker">Home</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
           </li>
+          
         </ul>
         <form class="form-inline my-2 p-2 my-lg-0">
-          <a class="btn btn-outline-success my-2 my-sm-0" href="/signup">Sign up</a>
-        </form>
-        <form class="form-inline my-2 p-2 my-lg-0">
-          <a class="btn btn-success my-2 my-sm-0" href="/login">Login</a>
+          <a class="btn btn-outline-success my-2 my-sm-0" href="/logout">Logout</a>
         </form>
       </div>
     </nav>
@@ -36,21 +37,18 @@
       <div id="formContent">
         <br>
         <br>
-        <h2>SafeKeep</h2>
-        <h5>Login</h5>
-        <!-- Logo -->
-        <div class="">
-          <img src="/assets/img/logo.svg" style="width: 60%;" class="p-4" id="icon" alt="User Icon" />
-        </div>
+        <h3>Change Password</h5>
+        <br>
         
 
         <!-- Login Form -->
-        <section id="login">
-          <form id="loginForm" name="loginForm" action="/login" method="POST">
-            <input id="user" type="text"  name="username" placeholder="username">
-            <input id="pass" type="password"  name="pass" placeholder="password">
+        <section id="change">
+          <form id="changeForm" name="changeForm" action="/changepass" method="POST">
+            
+            <input id="pass" type="password"  name="pass" placeholder="new password">
+            <input id="pass2" type="password"  name="pass2" placeholder="re-enter new password">
             <input type="hidden" name="_csrf" value={{csrfToken}} />
-            <input type="submit" id="loginButton" disabled="disabled" class="fadeIn btn btn-success" value="Log In">
+            <input type="submit" id="changeButton" disabled="disabled" class="fadeIn btn btn-success" value="Change Password">
           </form>
         </section>
         <div id="errorMessage">

@@ -25,7 +25,10 @@
             <a class="nav-link" href="/maker">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/changepass">Change pass</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -46,7 +49,7 @@
   </div>
 
 <!-- Modal -->
-<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div class="modal fade " id="createModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" id="">
       <div class="modal-header">
@@ -61,7 +64,7 @@
               <label for="name">Name of site/application: </label>
               <input id="title" type="text" name="title" placeholder="ex: Amazon"/>
               <label for="username">Username or email: </label>
-              <input id="username" type="text" name="username" placeholder="username"/> <br>
+              <input id="username" type="text" name="username" placeholder=""/> <br>
               <label for="password">Password: </label>
               <input id="password" type="text" name="password" placeholder=""/>
               <input type="hidden" name="_csrf" value={{csrfToken}} />
@@ -107,22 +110,14 @@
         {{/each}}
         {{else}}
           <h3 class="text-center">No entries yet</h3>
-          {{!-- <div class="card border-success  d-inline-block" style="width: 25rem;">
-            <div class="card-body">
-              <h3 class="card-title text-success">Amazon</h3>
-              <p class="card-text"><b>Username: </b> user </p>
-              <p class="card-text"><b>Password: </b> pass </p>
-            </div>
-          </div> --}}
+         
 
 
           
         {{/if}}
     </div>
   </section>
-  <div id="domoMessage"><img id="speech" src="/assets/img/speech.png" alt="speech box"/>
-    <h3><span id="errorMessage"></span></h3><img id="domo" src="assets/img/domo.png" alt="domo"/>
-  </div>
+ 
   <script src="/assets/bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

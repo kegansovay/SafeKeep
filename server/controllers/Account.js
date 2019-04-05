@@ -6,6 +6,14 @@ const loginPage = (req, res) => {
   res.render('login', {csrfToken: req.csrfToken() });
 };
 
+const changePage = (req, res) => {
+  res.render('changepass', {csrfToken: req.csrfToken() });
+};
+
+const aboutPage = (req, res) => {
+  res.render('about', {csrfToken: req.csrfToken() });
+};
+
 const signupPage = (req, res) => {
   res.render('signup', {csrfToken: req.csrfToken() });
 };
@@ -47,12 +55,10 @@ const signup = (request, response) => {
   req.body.pass = `${req.body.pass}`;
   req.body.pass2 = `${req.body.pass2}`;
 
-  if (!req.body.username || !req.body.pass || !req.body.pass2) {
-    return res.status(400).json({ error: 'RAWR! All the fields are required' });
-  }
+  
 
   if (req.body.pass !== req.body.pass2) {
-    return res.status(400).json({ error: 'RAWR! Passwords do not match' });
+    return res.status(400).json({ error: 'Passwords do not match' });
   }
 
   return Account.AccountModel.generateHash(req.body.pass, (salt, hash) => {
@@ -81,8 +87,53 @@ const signup = (request, response) => {
   });
 };
 
+const changePass = (request, response) => {
+  const req = request;
+  const res = response;
+
+  req.body.pass = `${req.body.pass}`;
+  req.body.pass2 = `${req.body.pass2}`;
+
+
+  if (req.body.pass !== req.body.pass2) {
+    return res.status(400).json({ error: 'Passwords do not match!' });
+  }
+
+  return Account.AccountModel.findByUsername(req.session.account.username, (err, doc) => {
+    if (err) {
+      return res.json({ err });
+    }
+
+    const account = doc;
+
+    return Account.AccountModel.generateHash(req.body.pass, (salt, hash) => {
+      
+      account.password = hash;
+      account.salt = salt;
+      const savePromise = account.save();
+
+      
+
+      savePromise.then(() => {
+        res.json({ redirect: '/maker' });
+      });
+
+      savePromise.catch(() => {
+        res.json({ err })
+      });
+
+      
+
+      return res;
+    });
+  });
+};
+
 module.exports.loginPage = loginPage;
+module.exports.changePage = changePage;
+module.exports.changePass = changePass;
 module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signupPage = signupPage;
 module.exports.signup = signup;
+module.exports.aboutPage = aboutPage;

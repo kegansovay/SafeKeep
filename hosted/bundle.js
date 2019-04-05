@@ -32,13 +32,9 @@ $(document).ready(function () {
 
     //$("#domoMessage").animate({width:'hide'},350);
 
-    if ($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
-      handleError("RAWR! All fields are required");
-      return false;
-    }
 
     if ($("#pass").val() !== $("#pass2").val()) {
-      handleError("RAWR! Passwords do not match");
+      handleError("Passwords do not match");
       return false;
     }
 
@@ -47,20 +43,50 @@ $(document).ready(function () {
     return false;
   });
 
+  $('#signupForm').keyup(function () {
+
+    var empty = false;
+    $('form > input').each(function () {
+
+      if ($(this).val() == '') {
+        empty = true;
+      }
+    });
+
+    if (empty) {
+      $('#signupButton').attr('disabled', 'disabled');
+    } else {
+      $('#signupButton').removeAttr('disabled');
+    }
+  });
+
   $("#loginForm").on("submit", function (e) {
 
     e.preventDefault();
 
     //$("#domoMessage").animate({width:'hide'},350);
 
-    if ($("#user").val() == '' || $("#pass").val() == '') {
-      handleError("RAWR! Username or password is empty");
-      return false;
-    }
 
     sendAjax($("#loginForm").attr("action"), $("#loginForm").serialize());
 
     return false;
+  });
+
+  $('#loginForm').keyup(function () {
+
+    var empty = false;
+    $('form > input').each(function () {
+
+      if ($(this).val() == '') {
+        empty = true;
+      }
+    });
+
+    if (empty) {
+      $('#loginButton').attr('disabled', 'disabled');
+    } else {
+      $('#loginButton').removeAttr('disabled');
+    }
   });
 
   $("#credsForm").on("submit", function (e) {
@@ -91,6 +117,39 @@ $(document).ready(function () {
       $('#addButton').attr('disabled', 'disabled');
     } else {
       $('#addButton').removeAttr('disabled');
+    }
+  });
+
+  $("#changeForm").on("submit", function (e) {
+    e.preventDefault();
+
+    //$("#domoMessage").animate({width:'hide'},350);
+
+
+    if ($("#pass").val() !== $("#pass2").val()) {
+      handleError("Passwords do not match");
+      return false;
+    }
+
+    sendAjax($("#changeForm").attr("action"), $("#changeForm").serialize());
+
+    return false;
+  });
+
+  $('#changeForm').keyup(function () {
+
+    var empty = false;
+    $('form > input').each(function () {
+
+      if ($(this).val() == '') {
+        empty = true;
+      }
+    });
+
+    if (empty) {
+      $('#changeButton').attr('disabled', 'disabled');
+    } else {
+      $('#changeButton').removeAttr('disabled');
     }
   });
 });

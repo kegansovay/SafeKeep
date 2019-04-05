@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
   <link rel="shortcut icon" href="/assets/img/favicon.png"/>
   <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="/maker">
         <img src="/assets/img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
         SafeKeep
@@ -21,58 +22,38 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="/maker">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/changepass">Change pass</a>
           </li>
         </ul>
-         <form class="form-inline my-2 p-2 my-lg-0">
-          <a class="btn btn-outline-success my-2 my-sm-0" href="/signup">Sign up</a>
-        </form>
-        <form class="form-inline my-2 p-2 my-lg-0">
-          <a class="btn btn-success my-2 my-sm-0" href="/login">Login</a>
-        </form>
       </div>
     </nav>
 
-    <div class="wrapper animated zoomIn">
-      <div id="formContent">
-        <br>
-        <br>
-        <h2>SafeKeep</h2>
-        <h5>Sign up</h5>
-        <!-- Logo -->
-        <div class="">
-          <img src="/assets/img/logo.svg" style="width: 60%;" class="p-4" id="icon" alt="User Icon" />
-        </div>
-        
-        
-
-        <!-- Signup Form -->
-        <section id="signup">
-          <form id="signupForm" name="signupForm" action="/signup" method="POST">
-            <input id="user" type="text"  name="username" placeholder="username">
-            <input id="pass" type="password"  name="pass" placeholder="password">
-            <input id="pass2" type="password"  name="pass2" placeholder="re-enter password">
-            <input type="hidden" name="_csrf" value={{csrfToken}} />
-            <input type="submit" id="signupButton" disabled="disabled" class="fadeIn btn btn-success" value="Sign up">
-          </form>
-        </section>
-
-        <div id="errorMessage">
-        </div>
-        <br>
-        
-
-      
-
-      </div>
-    </div>
-
- 
+    <div style="padding: 10px;">
+    <h1 >ABOUT SAFEKEEP</h1>
+    <p>SafeKeep is a personalized account manager that organizes all of your accounts and passwords.
+    </p>
+    <br>
+    <img style="width: 50%" src="/assets/img/logo.svg">
+    <h2>How it works?</h2>
+    <p>To create an entry, log in or create an account. Once at the main screen you can see any
+      previously made entries. At the top of the screen you can add credentials to create a new entry
+      which will then show up on your homepage.
+    </p>
+    
+    <h2>Creator</h2>
+    <p>This SafeKeep was created by Kegan Sovay for Rich Media 2</p>
+    <br>
+    <a href="/maker">HOME</a>
+  </div>
 
 
-  {{!-- <div id="domoMessage"><img id="speech" src="/assets/img/speech.png" alt="speech box"/>
-    <h3><span id="errorMessage"></span></h3><img id="domo" src="assets/img/domo.png" alt="domo"/>
-  </div> --}}
+  
   <script src="/assets/bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
