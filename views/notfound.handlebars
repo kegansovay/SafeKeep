@@ -20,56 +20,25 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/maker">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/notes">Secret Notes</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
           </li>
-          
         </ul>
         <form class="form-inline my-2 p-2 my-lg-0">
-          <a class="btn btn-outline-success my-2 my-sm-0" href="/logout">Logout</a>
+          <a class="btn btn-outline-success my-2 my-sm-0" href="/signup">Sign up</a>
+        </form>
+        <form class="form-inline my-2 p-2 my-lg-0">
+          <a class="btn btn-success my-2 my-sm-0" href="/login">Login</a>
         </form>
       </div>
     </nav>
 
-    <div class="wrapper animated zoomIn ">
-      <div id="formContent">
-        <br>
-        <br>
-        <h3>Change Password</h5>
-        <br>
-        
-
-        <!-- Login Form -->
-        <section id="change">
-          <form id="changeForm" name="changeForm" action="/changepass" method="POST">
-            
-            <input id="pass" type="password"  name="pass" placeholder="new password">
-            <input id="pass2" type="password"  name="pass2" placeholder="re-enter new password">
-            <input type="hidden" name="_csrf" value={{csrfToken}} />
-            <input type="submit" id="changeButton" disabled="disabled" class="fadeIn btn btn-success" value="Change Password">
-          </form>
-        </section>
-        <div id="errorMessage">
-        </div>
-        <br>
-        
-
-      
-
-      </div>
-    </div>
+   <div class="text-center p-5">
+     <h1 class="p-5">This page doesn't exist!</h1>
+     <a class="btn btn-success" href="/maker">Return Home</a>
+   </div>
 
 
   
-  
-  <div id="domoMessage"><img id="speech" src="/assets/img/speech.png" alt="speech box"/>
-    <h3><span id="errorMessage">Wrong username or password</span></h3><img id="domo" src="assets/img/domo.png" alt="domo"/>
-  </div>
   <script src="/assets/bundle.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

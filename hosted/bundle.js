@@ -2,8 +2,9 @@
 
 var handleError = function handleError(message) {
   $("#errorMessage").text(message);
-  //$("#domoMessage").animate({width:'toggle'},350);
 };
+
+var count = 0;
 
 var sendAjax = function sendAjax(action, data) {
   $.ajax({
@@ -13,7 +14,6 @@ var sendAjax = function sendAjax(action, data) {
     data: data,
     dataType: "json",
     success: function success(result, status, xhr) {
-      //$("#domoMessage").animate({width:'hide'},350);
 
       window.location = result.redirect;
     },
@@ -27,11 +27,9 @@ var sendAjax = function sendAjax(action, data) {
 
 $(document).ready(function () {
 
+  //SUBMIT SIGNUP
   $("#signupForm").on("submit", function (e) {
     e.preventDefault();
-
-    //$("#domoMessage").animate({width:'hide'},350);
-
 
     if ($("#pass").val() !== $("#pass2").val()) {
       handleError("Passwords do not match");
@@ -43,6 +41,7 @@ $(document).ready(function () {
     return false;
   });
 
+  // PREVENT EMPTY INPUT FIELDS
   $('#signupForm').keyup(function () {
 
     var empty = false;
@@ -60,18 +59,17 @@ $(document).ready(function () {
     }
   });
 
+  // SUBMIT LOGIN
   $("#loginForm").on("submit", function (e) {
 
     e.preventDefault();
-
-    //$("#domoMessage").animate({width:'hide'},350);
-
 
     sendAjax($("#loginForm").attr("action"), $("#loginForm").serialize());
 
     return false;
   });
 
+  // PREVENT EMPTY INPUT FIELDS
   $('#loginForm').keyup(function () {
 
     var empty = false;
@@ -89,12 +87,10 @@ $(document).ready(function () {
     }
   });
 
+  //ADD NEW CREDENTIAL
   $("#credsForm").on("submit", function (e) {
 
     e.preventDefault();
-
-    //$("#domoMessage").animate({width:'hide'},350);
-
 
     sendAjax($("#credsForm").attr("action"), $("#credsForm").serialize());
 
@@ -103,6 +99,7 @@ $(document).ready(function () {
     return false;
   });
 
+  // PREVENT EMPTY INPUT FIELDS
   $('#credsForm').keyup(function () {
 
     var empty = false;
@@ -120,11 +117,9 @@ $(document).ready(function () {
     }
   });
 
+  //CHANGE PASSWORD SUBMIT
   $("#changeForm").on("submit", function (e) {
     e.preventDefault();
-
-    //$("#domoMessage").animate({width:'hide'},350);
-
 
     if ($("#pass").val() !== $("#pass2").val()) {
       handleError("Passwords do not match");
@@ -136,6 +131,7 @@ $(document).ready(function () {
     return false;
   });
 
+  // PREVENT EMPTY INPUT FIELDS
   $('#changeForm').keyup(function () {
 
     var empty = false;
@@ -152,13 +148,40 @@ $(document).ready(function () {
       $('#changeButton').removeAttr('disabled');
     }
   });
-});
 
-function myFunction() {
-  var x = document.getElementById("myInput");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
+  //ADD NEW NOTE SUMBIT
+  $("#noteForm").on("submit", function (e) {
+
+    e.preventDefault();
+
+    sendAjax($("#noteForm").attr("action"), $("#noteForm").serialize());
+
+    $('#createModal').modal('hide');
+
+    return false;
+  });
+
+  // PREVENT EMPTY INPUT FIELDS
+  $('#noteForm').keyup(function () {
+
+    var title = $('form > input').val();
+    var content = $('textarea#content').val();
+
+    if (title == '' || content == '') {
+      $('#noteButton').attr('disabled', 'disabled');
+    } else if (title != '' && content != '') {
+      $('#noteButton').removeAttr('disabled');
+    }
+  });
+
+  //Make notes flip on click
+  $(".flippable").click(function () {
+    $(this).toggleClass("flipme");
+  });
+
+  //Hide/show password on click
+  $(".password").click(function () {
+    console.log("hi");
+    $(this).find(".pass").toggleClass("black");
+  });
+});

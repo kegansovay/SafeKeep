@@ -2,28 +2,21 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const _ = require('underscore');
 
-let DomoModel = {};
+let NoteModel = {};
 
 // mogoose.types.objectid is a function that converst string ID to real mongo ID
 const convertId = mongoose.Types.ObjectId;
 const setName = (name) => _.escape(name).trim();
-const setUserName = (name) => _.escape(name).trim();
 
-const DomoSchema = new mongoose.Schema({
-  title: {
+const NoteSchema = new mongoose.Schema({
+  notetitle: {
     type: String,
     required: true,
     trim: true,
     set: setName,
   },
 
-  username: {
-    type: String,
-    required: true,
-    set: setUserName,
-  },
-
-  password: {
+  content: {
     type: String,
     required: true,
   },
@@ -40,21 +33,20 @@ const DomoSchema = new mongoose.Schema({
   },
 });
 
-DomoSchema.statics.toAPI = (doc) => ({
-  title: doc.title,
-  username: doc.username,
-  password: doc.password,
+NoteSchema.statics.toAPI = (doc) => ({
+  notetitle: doc.notetitle,
+  content: doc.content,
 });
 
-DomoSchema.statics.findByOwner = (ownerId, callback) => {
+NoteSchema.statics.findByOwner = (ownerId, callback) => {
   const search = {
     owner: convertId(ownerId),
   };
 
-  return DomoModel.find(search).select('title username password').exec(callback);
+  return NoteModel.find(search).select('notetitle content').exec(callback);
 };
 
-DomoModel = mongoose.model('Domo', DomoSchema);
+NoteModel = mongoose.model('Note', NoteSchema);
 
-module.exports.DomoModel = DomoModel;
-module.exports.DomoSchema = DomoSchema;
+module.exports.NoteModel = NoteModel;
+module.exports.NoteSchema = NoteSchema;

@@ -2,27 +2,36 @@ const models = require('../models');
 
 const Account = models.Account;
 
+
+//RENDER ALL THE PAGES
 const loginPage = (req, res) => {
-  res.render('login', {csrfToken: req.csrfToken() });
+  res.render('login', { csrfToken: req.csrfToken() });
 };
 
+const notFound = (req, res) => {
+  res.render('notfound', { csrfToken: req.csrfToken() });
+}
+
 const changePage = (req, res) => {
-  res.render('changepass', {csrfToken: req.csrfToken() });
+  res.render('changepass', { csrfToken: req.csrfToken() });
 };
 
 const aboutPage = (req, res) => {
-  res.render('about', {csrfToken: req.csrfToken() });
+  res.render('about', { csrfToken: req.csrfToken() });
 };
 
 const signupPage = (req, res) => {
-  res.render('signup', {csrfToken: req.csrfToken() });
+  res.render('signup', { csrfToken: req.csrfToken() });
 };
 
+
+//LOGOUT BUTTON
 const logout = (req, res) => {
   req.session.destroy();
   res.redirect('/');
 };
 
+//HANDLE LOGIN
 const login = (request, response) => {
   const req = request;
   const res = response;
@@ -46,6 +55,8 @@ const login = (request, response) => {
   });
 };
 
+
+//HANDLE SIGNUP
 const signup = (request, response) => {
   const req = request;
   const res = response;
@@ -55,7 +66,6 @@ const signup = (request, response) => {
   req.body.pass = `${req.body.pass}`;
   req.body.pass2 = `${req.body.pass2}`;
 
-  
 
   if (req.body.pass !== req.body.pass2) {
     return res.status(400).json({ error: 'Passwords do not match' });
@@ -87,6 +97,8 @@ const signup = (request, response) => {
   });
 };
 
+
+// CHANGE USER PASSWORD
 const changePass = (request, response) => {
   const req = request;
   const res = response;
@@ -107,22 +119,19 @@ const changePass = (request, response) => {
     const account = doc;
 
     return Account.AccountModel.generateHash(req.body.pass, (salt, hash) => {
-      
       account.password = hash;
       account.salt = salt;
       const savePromise = account.save();
 
-      
 
       savePromise.then(() => {
         res.json({ redirect: '/maker' });
       });
 
       savePromise.catch(() => {
-        res.json({ err })
+        res.json({ err });
       });
 
-      
 
       return res;
     });
@@ -137,3 +146,4 @@ module.exports.logout = logout;
 module.exports.signupPage = signupPage;
 module.exports.signup = signup;
 module.exports.aboutPage = aboutPage;
+module.exports.notFound = notFound;

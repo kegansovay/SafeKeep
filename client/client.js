@@ -1,7 +1,8 @@
 const handleError = (message) => {
   $("#errorMessage").text(message);
-  //$("#domoMessage").animate({width:'toggle'},350);
 }
+
+let count = 0;
 
 const sendAjax = (action, data) => {
   $.ajax({
@@ -11,7 +12,6 @@ const sendAjax = (action, data) => {
     data: data,
     dataType: "json",
     success: (result, status, xhr) => {
-      //$("#domoMessage").animate({width:'hide'},350);
 
       window.location = result.redirect;
     },
@@ -25,10 +25,9 @@ const sendAjax = (action, data) => {
 
 $(document).ready(() => {
   
+  //SUBMIT SIGNUP
   $("#signupForm").on("submit", (e) => {
     e.preventDefault();
-
-    //$("#domoMessage").animate({width:'hide'},350);
 
 
     if($("#pass").val() !== $("#pass2").val()) {
@@ -41,6 +40,7 @@ $(document).ready(() => {
     return false;
   });
 
+  // PREVENT EMPTY INPUT FIELDS
   $('#signupForm').keyup(function() {
 
    
@@ -60,20 +60,19 @@ $(document).ready(() => {
   });
 
 
-
+// SUBMIT LOGIN
   $("#loginForm").on("submit", (e) => {
     
     e.preventDefault();
 
     
-    //$("#domoMessage").animate({width:'hide'},350);
-
 
     sendAjax($("#loginForm").attr("action"), $("#loginForm").serialize());
 
     return false;
   });
   
+  // PREVENT EMPTY INPUT FIELDS
   $('#loginForm').keyup(function() {
 
    
@@ -92,11 +91,10 @@ $(document).ready(() => {
     }
   });
   
+  //ADD NEW CREDENTIAL
   $("#credsForm").on("submit", (e) => {
     
     e.preventDefault();
-
-    //$("#domoMessage").animate({width:'hide'},350);
 
 
     sendAjax($("#credsForm").attr("action"), $("#credsForm").serialize());
@@ -107,7 +105,7 @@ $(document).ready(() => {
   });
 
 
- 
+ // PREVENT EMPTY INPUT FIELDS
 $('#credsForm').keyup(function() {
 
    
@@ -126,10 +124,11 @@ $('#credsForm').keyup(function() {
     }
 });
 
+//CHANGE PASSWORD SUBMIT
 $("#changeForm").on("submit", (e) => {
   e.preventDefault();
 
-  //$("#domoMessage").animate({width:'hide'},350);
+  
 
 
   if($("#pass").val() !== $("#pass2").val()) {
@@ -142,6 +141,7 @@ $("#changeForm").on("submit", (e) => {
   return false;
 });
 
+// PREVENT EMPTY INPUT FIELDS
 $('#changeForm').keyup(function() {
 
    
@@ -160,8 +160,48 @@ $('#changeForm').keyup(function() {
   }
 });
 
+//ADD NEW NOTE SUMBIT
+$("#noteForm").on("submit", (e) => {
+    
+  e.preventDefault();
+
+  sendAjax($("#noteForm").attr("action"), $("#noteForm").serialize());
+
+  $('#createModal').modal('hide');
+
+  return false;
+});
 
 
+
+// PREVENT EMPTY INPUT FIELDS
+$('#noteForm').keyup(function() {
+
+
+  var title = $('form > input').val();
+  var content = $('textarea#content').val();
+
+
+  if(title == '' || content == ''){
+    $('#noteButton').attr('disabled', 'disabled'); 
+  }
+  else if(title != '' && content != ''){
+    $('#noteButton').removeAttr('disabled'); 
+  }
+
+  
+});
+
+//Make notes flip on click
+$(".flippable").click(function(){
+  $(this).toggleClass("flipme");
+});
+
+//Hide/show password on click
+$(".password").click(function(){
+  console.log("hi");
+  $(this).find(".pass").toggleClass("black")
+});
 
 
 
@@ -170,14 +210,10 @@ $('#changeForm').keyup(function() {
   
 });
 
-function myFunction() {
-  var x = document.getElementById("myInput");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
+
+
+
+
 
 
 

@@ -304,7 +304,7 @@ input[type=button], input[type=submit], input[type=reset]  {
     transform: scale(0.95);
   }
   
-  input[type=text], input[type=password] {
+  input[type=text], input[type=password], textarea {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -340,5 +340,66 @@ input[type=button], input[type=submit], input[type=reset]  {
       text-align: justify;
       width: auto;
       padding: 0px;
+  }
+
+
+  .flip-container {
+    perspective: 1000;
+    margin: 10px;
+    float: left;
+    cursor:pointer;
+  }
+  
+    .flippable {
+      transition: 0.5s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+  
+    .flipme {
+      transform: rotateY(180deg);
+    }
+  
+    
+  
+  
+  .flip-container, .front, .back {
+    width: 300px;
+    height: 200px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 5px;
+  }
+  
+  .front, .back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+  }
+  
+  
+  .front {
+    z-index: 2;
+    border:1px solid;
+    text-align: center;
+    
+
+  }
+  
+  .back {
+    transform: rotateY(180deg);
+    font-size: 18px;
+    border:1px solid;
+    font-family: Verdana;
+  }
+
+  .black{
+      background: black;
+  }
+
+  .black-text{
+      color: black;
   }
   
