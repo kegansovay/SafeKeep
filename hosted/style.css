@@ -402,4 +402,10 @@ input[type=button], input[type=submit], input[type=reset]  {
   .black-text{
       color: black;
   }
+
+  .note{
+    word-wrap: break-word;
+    line-height: initial;
+    padding: 5px;
+  }
   
