@@ -3,7 +3,7 @@ const handleError = (message) => {
 };
 
 const redirect = (response) => {
-    wondow.location = response.redirect;
+    window.location = response.redirect;
 };
 
 const sendAjax = (type, action, data, success) => {
