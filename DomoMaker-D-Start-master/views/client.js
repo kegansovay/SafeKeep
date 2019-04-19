@@ -65,8 +65,6 @@ $(document).ready(() => {
     
     e.preventDefault();
 
-    
-
     sendAjax($("#loginForm").attr("action"), $("#loginForm").serialize());
 
     return false;
