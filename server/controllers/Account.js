@@ -3,14 +3,14 @@ const models = require('../models');
 const Account = models.Account;
 
 
-//RENDER ALL THE PAGES
+// RENDER ALL THE PAGES
 const loginPage = (req, res) => {
   res.render('login', { csrfToken: req.csrfToken() });
 };
 
 const notFound = (req, res) => {
   res.render('notfound', { csrfToken: req.csrfToken() });
-}
+};
 
 const changePage = (req, res) => {
   res.render('changepass', { csrfToken: req.csrfToken() });
@@ -20,16 +20,18 @@ const aboutPage = (req, res) => {
   res.render('about', { csrfToken: req.csrfToken() });
 };
 
+const upgradePage = (req, res) => {
+  res.render('upgrade', { csrfToken: req.csrfToken() });
+};
 
 
-
-//LOGOUT BUTTON
+// LOGOUT BUTTON
 const logout = (req, res) => {
   req.session.destroy();
   res.redirect('/');
 };
 
-//HANDLE LOGIN
+// HANDLE LOGIN
 const login = (request, response) => {
   const req = request;
   const res = response;
@@ -54,7 +56,7 @@ const login = (request, response) => {
 };
 
 
-//HANDLE SIGNUP
+// HANDLE SIGNUP
 const signup = (request, response) => {
   const req = request;
   const res = response;
@@ -137,7 +139,7 @@ const changePass = (request, response) => {
 };
 
 const getToken = (request, response) => {
-  const req  = request;
+  const req = request;
   const res = response;
 
   const csrfJSON = {
@@ -154,5 +156,6 @@ module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signup = signup;
 module.exports.aboutPage = aboutPage;
+module.exports.upgradePage = upgradePage;
 module.exports.notFound = notFound;
 module.exports.getToken = getToken;

@@ -409,4 +409,40 @@ input[type=button], input[type=submit], input[type=reset]  {
     line-height: initial;
     padding: 5px;
   }
+
+  .justify{
+      text-align: justify;
+  }
+
+  .mycard{
+    width: 25rem;
+  }
+
+  .eye{
+    cursor: pointer;
+  }
+
+  .upgrade-link{
+      color: #5cb85c;
+
+  }
+  .upgrade-link:hover{
+    color: #366a36;
+    text-decoration: none;
+    
+}
+
+.green{
+    color: #5cb85c;
+
+}
+
+.text-20{
+    font-size: 20px;
+}
+
+.pad{
+    padding-left: 18%;
+    padding-right: 18%;
+}
   

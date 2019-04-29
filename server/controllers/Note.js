@@ -1,7 +1,7 @@
 const models = require('../models');
 const Note = models.Note;
 
-//RENDER PAGE
+// RENDER PAGE
 const notesPage = (req, res) => {
   Note.NoteModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
@@ -13,7 +13,7 @@ const notesPage = (req, res) => {
   });
 };
 
-//CREATE NEW NOTE
+// CREATE NEW NOTE
 const makeNote = (req, res) => {
   if (!req.body.notetitle || !req.body.content) {
     return res.status(400).json({ error: 'Both title and content are required.' });
@@ -41,5 +41,19 @@ const makeNote = (req, res) => {
   return notePromise;
 };
 
+const getNotes = (request, response) => {
+  const req = request;
+  const res = response;
+
+  return Note.NoteModel.findByOwner(req.session.account._id, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occurred' });
+    }
+    return res.json({ notes: docs });
+  });
+};
+
 module.exports.notesPage = notesPage;
+module.exports.getNotes = getNotes;
 module.exports.makeNote = makeNote;

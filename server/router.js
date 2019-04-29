@@ -15,6 +15,7 @@ const mid = require('./middleware');
 const router = (app) => {
   app.get('/getToken', mid.requiresSecure, controllers.Account.getToken);
   app.get('/about', mid.requiresSecure, controllers.Account.aboutPage);
+  app.get('/upgrade', mid.requiresSecure, controllers.Account.upgradePage);
   app.get('/login', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
   app.post('/login', mid.requiresSecure, mid.requiresLogout, controllers.Account.login);
   app.post('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
@@ -23,10 +24,14 @@ const router = (app) => {
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
   app.get('/maker', mid.requiresLogin, controllers.Domo.makerPage);
   app.post('/maker', mid.requiresLogin, controllers.Domo.make);
-  app.get('/notes', mid.requiresLogin, controllers.Note.notesPage);
-  app.post('/notes', mid.requiresLogin, controllers.Note.makeNote);
+  app.get('/getDomos', mid.requiresLogin, controllers.Domo.getDomos);
+  app.get('/getNotes', mid.requiresLogin, controllers.Note.getNotes);
+  // app.get('/notes', mid.requiresLogin, controllers.Note.notesPage);
+  // app.post('/notes', mid.requiresLogin, controllers.Note.makeNote);
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
   app.get('/*', mid.requiresSecure, controllers.Account.notFound);
+
+  
 };
 
 module.exports = router;

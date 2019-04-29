@@ -129,7 +129,7 @@ const getToken = () => {
 $(document).ready(function(){
     getToken();
 
-    console.log(document.querySelector("#loginForm"));
+    //console.log(document.querySelector("#loginForm"));
 
 
 });
